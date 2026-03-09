@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skymarx Kharkhoda Plots | Near Maruti Plant & KMP Expressway</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9952a;
+    --gold-light: #e8b94a;
+    --dark: #0d1117;
+    --dark2: #161b22;
+    --dark3: #1f2937;
+    --white: #ffffff;
+    --gray: #9ca3af;
+    --light-bg: #f8f5f0;
+    --text-dark: #1a1a2e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Raleway', sans-serif;
+    background: var(--white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(13,17,23,0.97);
+    backdrop-filter: blur(10px);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    border-bottom: 1px solid rgba(201,149,42,0.3);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--dark) !important;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-weight: 700 !important;
+    transition: background 0.3s !important;
+  }
+
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--dark) !important; }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 25px; height: 2px; background: var(--gold); display: block; transition: 0.3s; }
+
+  /* HERO */
+  #home {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0d1117 0%, #1a2332 50%, #0d1117 100%);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 68px;
+  }
+
+  #home::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(201,149,42,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(201,149,42,0.08) 0%, transparent 50%);
+  }
+
+  #home::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--white));
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(201,149,42,0.15);
+    border: 1px solid rgba(201,149,42,0.4);
+    color: var(--gold);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-title span { color: var(--gold); }
+
+  .hero-sub {
+    color: #aab4c0;
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-sub::before {
+    content: '📍';
+    font-size: 0.9rem;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--dark);
+    padding: 14px 32px;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(201,149,42,0.4);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    padding: 14px 32px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 4px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* Hero Form Card */
+  .hero-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,149,42,0.25);
+    border-radius: 12px;
+    padding: 2.5rem;
+    backdrop-filter: blur(20px);
+  }
+
+  .hero-card h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .form-group { margin-bottom: 1rem; }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--white);
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.9rem;
+    transition: border-color 0.3s;
+    outline: none;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: #6b7280; }
+
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+
+  .form-group textarea { resize: vertical; min-height: 80px; }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  .section-label {
+    display: inline-block;
+    color: var(--gold);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 4px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .section-desc {
+    color: #4b5563;
+    line-height: 1.8;
+    font-size: 1rem;
+    max-width: 700px;
+  }
+
+  /* OVERVIEW */
+  #overview { background: var(--light-bg); }
+
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .overview-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .detail-card {
+    background: var(--white);
+    border: 1px solid #e5e7eb;
+    border-left: 3px solid var(--gold);
+    padding: 1rem 1.2rem;
+    border-radius: 6px;
+  }
+
+  .detail-card .label {
+    font-size: 0.75rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .detail-card .value {
+    font-weight: 700;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+  }
+
+  .overview-img {
+    position: relative;
+  }
+
+  .overview-img img {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+
+  .overview-img-placeholder {
+    width: 100%;
+    height: 380px;
+    background: linear-gradient(135deg, #1a2332, #2d3a4a);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--gold);
+    font-size: 4rem;
+    gap: 1rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+
+  .overview-img-placeholder p {
+    font-size: 1rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .about-text {
+    color: #374151;
+    line-height: 1.9;
+    font-size: 0.95rem;
+    margin-top: 1rem;
+  }
+
+  /* HIGHLIGHTS */
+  #highlights { background: var(--dark); }
+
+  #highlights .section-title { color: var(--white); }
+  #highlights .section-label { color: var(--gold); }
+
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .highlight-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,149,42,0.2);
+    border-radius: 10px;
+    padding: 1.8rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .highlight-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+
+  .highlight-card:hover::before { transform: scaleX(1); }
+
+  .highlight-card:hover {
+    background: rgba(201,149,42,0.06);
+    border-color: rgba(201,149,42,0.4);
+    transform: translateY(-4px);
+  }
+
+  .highlight-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .highlight-card h4 {
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .highlight-card p {
+    color: #9ca3af;
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+
+  /* INVESTMENT */
+  .investment-section { background: var(--light-bg); }
+
+  .investment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .investment-img {
+    width: 100%;
+    height: 380px;
+    background: linear-gradient(135deg, #0d1117, #1f2937);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .investment-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(201,149,42,0.15), transparent 60%);
+  }
+
+  .investment-points { margin-top: 2rem; }
+
+  .inv-point {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .inv-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(201,149,42,0.12);
+    border: 1px solid rgba(201,149,42,0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .inv-point h4 { color: var(--text-dark); font-weight: 700; margin-bottom: 4px; }
+  .inv-point p { color: #6b7280; font-size: 0.88rem; line-height: 1.6; }
+
+  /* AMENITIES */
+  #amenities { background: var(--white); }
+
+  .amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .amenity-card {
+    text-align: center;
+    padding: 2rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    transition: all 0.3s;
+    cursor: default;
+  }
+
+  .amenity-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 8px 30px rgba(201,149,42,0.12);
+    transform: translateY(-4px);
+  }
+
+  .amenity-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+
+  .amenity-card h4 {
+    font-weight: 700;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .amenity-card p {
+    color: #6b7280;
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+
+  /* PRICE */
+  #price { background: var(--dark); }
+
+  #price .section-title { color: var(--white); }
+
+  .price-content {
+    margin-top: 3rem;
+  }
+
+  .price-desc {
+    color: #9ca3af;
+    line-height: 1.8;
+    max-width: 700px;
+    margin-bottom: 2rem;
+  }
+
+  .price-table-wrap {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,149,42,0.25);
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 700px;
+    margin-bottom: 2rem;
+  }
+
+  table { width: 100%; border-collapse: collapse; }
+
+  thead { background: rgba(201,149,42,0.15); }
+
+  thead th {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    color: var(--gold);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  tbody tr { border-top: 1px solid rgba(255,255,255,0.06); }
+
+  tbody td {
+    padding: 1rem 1.5rem;
+    color: #e5e7eb;
+    font-size: 0.9rem;
+  }
+
+  tbody tr:hover { background: rgba(201,149,42,0.05); }
+
+  /* GROWTH / LOCATION */
+  .growth-section { background: var(--light-bg); }
+
+  .growth-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .growth-points { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.5rem; }
+
+  .growth-point {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .g-num {
+    width: 40px;
+    height: 40px;
+    background: var(--gold);
+    color: var(--dark);
+    font-weight: 800;
+    font-size: 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .growth-point h4 { color: var(--text-dark); font-weight: 700; margin-bottom: 4px; }
+  .growth-point p { color: #6b7280; font-size: 0.88rem; line-height: 1.6; }
+
+  /* LOCATION */
+  #location { background: var(--white); }
+
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+    align-items: start;
+  }
+
+  .location-text p {
+    color: #374151;
+    line-height: 1.9;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .connectivity-list { list-style: none; margin-top: 1rem; }
+
+  .connectivity-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid #f3f4f6;
+    color: #374151;
+    font-size: 0.92rem;
+  }
+
+  .connectivity-list li::before {
+    content: '✅';
+    font-size: 0.8rem;
+  }
+
+  .map-placeholder {
+    width: 100%;
+    height: 380px;
+    background: linear-gradient(135deg, #1a2332, #2d3a4a);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--gold);
+    font-size: 3rem;
+    gap: 1rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+
+  .map-placeholder p {
+    font-size: 0.9rem;
+    color: #9ca3af;
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 1px;
+  }
+
+  /* FAQS */
+  #FAQs { background: var(--light-bg); }
+
+  .faq-list { margin-top: 3rem; max-width: 850px; }
+
+  .faq-item {
+    background: var(--white);
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+
+  .faq-question {
+    padding: 1.2rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    transition: background 0.2s;
+  }
+
+  .faq-question:hover { background: #f9fafb; }
+
+  .faq-arrow {
+    color: var(--gold);
+    font-size: 1.2rem;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+    padding: 0 1.5rem;
+    color: #6b7280;
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 300px;
+    padding: 0 1.5rem 1.2rem;
+  }
+
+  /* CONTACT FOOTER */
+  .contact-section { background: var(--dark); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+    align-items: start;
+  }
+
+  .contact-section .section-title { color: var(--white); }
+
+  .contact-desc {
+    color: #9ca3af;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #060a0f;
+    padding: 3rem 2rem;
+    color: #9ca3af;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .footer-desc {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .footer-contact p {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .footer-col h4 {
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+  }
+
+  .footer-links { list-style: none; }
+
+  .footer-links li { margin-bottom: 0.5rem; }
+
+  .footer-links a {
+    color: #9ca3af;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 2rem auto 0;
+    text-align: center;
+    font-size: 0.78rem;
+    line-height: 1.7;
+  }
+
+  .disclaimer {
+    background: rgba(201,149,42,0.08);
+    border: 1px solid rgba(201,149,42,0.2);
+    border-radius: 6px;
+    padding: 1rem 1.5rem;
+    font-size: 0.78rem;
+    color: #9ca3af;
+    line-height: 1.7;
+    margin-top: 1rem;
+  }
+
+  /* POPUP */
+  .popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+  }
+
+  .popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .popup-box {
+    background: var(--white);
+    border-radius: 14px;
+    max-width: 520px;
+    width: 90%;
+    position: relative;
+    overflow: hidden;
+    transform: scale(0.85) translateY(30px);
+    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+  }
+
+  .popup-overlay.active .popup-box {
+    transform: scale(1) translateY(0);
+  }
+
+  .popup-header {
+    background: linear-gradient(135deg, var(--dark), var(--dark2));
+    padding: 2rem 2rem 1.5rem;
+    position: relative;
+  }
+
+  .popup-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 2rem;
+    width: 60px; height: 3px;
+    background: var(--gold);
+    border-radius: 2px;
+  }
+
+  .popup-close {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    width: 36px; height: 36px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+  }
+
+  .popup-close:hover { background: rgba(255,255,255,0.2); }
+
+  .popup-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .popup-sub {
+    color: #9ca3af;
+    font-size: 0.85rem;
+  }
+
+  .popup-body { padding: 2rem; }
+
+  .popup-body .form-group input,
+  .popup-body .form-group textarea {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    color: var(--text-dark);
+  }
+
+  .popup-body .form-group input::placeholder,
+  .popup-body .form-group textarea::placeholder { color: #9ca3af; }
+
+  .popup-body .form-group input:focus,
+  .popup-body .form-group textarea:focus {
+    border-color: var(--gold);
+    background: var(--white);
+    outline: none;
+  }
+
+  .popup-esc {
+    text-align: center;
+    color: #9ca3af;
+    font-size: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .hero-title { font-size: 2.2rem; }
+
+    .overview-grid,
+    .highlights-grid,
+    .investment-grid,
+    .growth-grid,
+    .location-grid,
+    .contact-grid,
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .highlights-grid { grid-template-columns: 1fr 1fr; }
+    .amenities-grid { grid-template-columns: 1fr 1fr; }
+    .overview-details { grid-template-columns: 1fr 1fr; }
+
+    .section-title { font-size: 1.8rem; }
+  }
+
+  @media (max-width: 500px) {
+    .highlights-grid { grid-template-columns: 1fr; }
+    .amenities-grid { grid-template-columns: 1fr 1fr; }
+    .hero-title { font-size: 1.8rem; }
+  }
+
+  /* Mobile nav open state */
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 68px; left: 0; right: 0;
+    background: rgba(13,17,23,0.98);
+    padding: 2rem;
+    gap: 1.5rem;
+    z-index: 999;
+    border-top: 1px solid rgba(201,149,42,0.2);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">Skymarx Kharkhoda</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#highlights">Highlights</a></li>
+    <li><a href="#amenities">Amenities</a></li>
+    <li><a href="#price">Price</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#FAQs">FAQs</a></li>
+    <li><a href="#" class="nav-cta" onclick="openPopup(event)">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge">RERA Approved • Now Launching</div>
+      <h1 class="hero-title">Skymarx Kharkhoda<br><span>Residential Plots</span></h1>
+      <p class="hero-sub">Sectors 6 and 7, Kharkhoda, Sonipat District, Haryana</p>
+      <p style="color:#aab4c0;line-height:1.7;font-size:0.95rem;margin-top:0.5rem;">Near Maruti Plant & KMP Expressway — A 100-Acre Planned Township in the Heart of Haryana's Fastest Growing Industrial Zone.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary" onclick="openPopup(event)">Contact Us</a>
+        <a href="#overview" class="btn-outline">Explore Project</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>Enquire Now</h3>
+      <div class="form-group">
+        <input type="text" placeholder="Your Name">
+      </div>
+      <div class="form-group">
+        <input type="tel" placeholder="Phone Number">
+      </div>
+      <div class="form-group">
+        <textarea placeholder="Message (Optional)"></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%;text-align:center;" onclick="handleSubmit(this)">Submit Now</button>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="container">
+    <span class="section-label">Project Overview</span>
+    <h2 class="section-title">Skymarx Kharkhoda Property Details</h2>
+    <div class="overview-grid">
+      <div>
+        <div class="overview-details">
+          <div class="detail-card">
+            <div class="label">Property Type</div>
+            <div class="value">Residential Plots</div>
+          </div>
+          <div class="detail-card">
+            <div class="label">Plot Size</div>
+            <div class="value">100 to 179 sq. yds</div>
+          </div>
+          <div class="detail-card">
+            <div class="label">RERA Status</div>
+            <div class="value">Approved</div>
+          </div>
+          <div class="detail-card">
+            <div class="label">Project Status</div>
+            <div class="value">Under Planning</div>
+          </div>
+          <div class="detail-card">
+            <div class="label">Launch Date</div>
+            <div class="value">November 2024</div>
+          </div>
+          <div class="detail-card">
+            <div class="label">Possession Date</div>
+            <div class="value">N/A</div>
+          </div>
+        </div>
+        <p class="about-text" style="margin-top:1.5rem;"><strong>Skymarx Kharkhoda</strong> is a 100-acre plotted township in Kharkhoda, Haryana. Located near the KMP Expressway, right across from the Maruti Suzuki plant. The project offers residential plots in a developing location with strong infrastructure growth.</p>
+        <p class="about-text">The initial offering in Phase 1 received strong interest. Following that success, Phase 2 covers an additional 16 acres, giving more buyers a chance to own land in this growing region.</p>
+        <a href="#" class="btn-primary" style="margin-top:1.5rem;display:inline-block;" onclick="openPopup(event)">Find More</a>
+      </div>
+      <div class="overview-img">
+        <div class="overview-img-placeholder">
+          🏘️
+          <p>Skymarx Township</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section id="highlights">
+  <div class="container">
+    <span class="section-label" style="color:var(--gold);">Why Choose Us</span>
+    <h2 class="section-title">Project Highlights</h2>
+    <div class="highlights-grid">
+      <div class="highlight-card">
+        <div class="highlight-icon">🏙️</div>
+        <h4>100+ Acres Township</h4>
+        <p>Spanning Sector 6 & 7 of Kharkhoda — a massive planned residential township with all modern facilities.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🏭</div>
+        <h4>Opposite Maruti Suzuki Factory</h4>
+        <p>Located right opposite the 800-acre Maruti Suzuki plant, ensuring massive employment and demand growth nearby.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🛣️</div>
+        <h4>Close to KMP Expressway</h4>
+        <p>Excellent highway connectivity providing fast access to Delhi, Gurugram, Rohtak, and other NCR cities.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🌿</div>
+        <h4>Planned Green Spaces</h4>
+        <p>Well-designed green belts, parks, and open areas integrated within the township layout for a healthy lifestyle.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🔗</div>
+        <h4>Easy Access to NH-352</h4>
+        <p>Direct connectivity to NH-352 and close to the Delhi Border, making daily commuting smooth and convenient.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🚀</div>
+        <h4>Future-Ready Location</h4>
+        <p>Surrounded by upcoming infrastructure, industrial zones, and government-backed development projects.</p>
+      </div>
+    </div>
+    <div style="margin-top:3rem;text-align:center;">
+      <a href="#" class="btn-primary" onclick="openPopup(event)">Contact Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT / WHY BUY -->
+<section class="investment-section">
+  <div class="container">
+    <div class="investment-grid">
+      <div>
+        <span class="section-label">Investment Value</span>
+        <h2 class="section-title">Why Skymarx Kharkhoda is a Perfect Investment</h2>
+        <p class="section-desc">Skymarx Kharkhoda offers residential plots in a 100-acre township opposite the Maruti Suzuki plant in Sectors 6 and 7, Kharkhoda. Phase 1 received strong buyer interest, and Phase 2 is launching soon.</p>
+        <div class="investment-points">
+          <div class="inv-point">
+            <div class="inv-icon">🏗️</div>
+            <div>
+              <h4>Next to Fast-Developing Zones</h4>
+              <p>Skymarx Kharkhoda is located near IMT Kharkhoda, Maruti Suzuki, and UNO Minda—major industrial hubs creating jobs and driving housing demand in Sonipat.</p>
+            </div>
+          </div>
+          <div class="inv-point">
+            <div class="inv-icon">📈</div>
+            <div>
+              <h4>New Development Happening Nearby</h4>
+              <p>The area is witnessing rapid infrastructure growth — new highways, widened roads, and upcoming commercial zones boost property value and enhance future livability.</p>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="btn-primary" style="margin-top:1.5rem;display:inline-block;" onclick="openPopup(event)">Get More Details</a>
+      </div>
+      <div class="investment-img">🌆</div>
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section id="amenities">
+  <div class="container">
+    <span class="section-label">Modern Living</span>
+    <h2 class="section-title">Modern Features & Amenities</h2>
+    <p class="section-desc">Everything you need for a comfortable, connected, and fulfilling residential life at Skymarx Kharkhoda.</p>
+    <div class="amenities-grid">
+      <div class="amenity-card">
+        <div class="amenity-icon">🏛️</div>
+        <h4>Community Space</h4>
+        <p>A space for social gatherings, indoor games, and lifestyle activities within the township.</p>
+      </div>
+      <div class="amenity-card">
+        <div class="amenity-icon">🏊</div>
+        <h4>Swimming Pool</h4>
+        <p>Clean and spacious swimming pool for both kids and adults. Enjoy leisure and fitness.</p>
+      </div>
+      <div class="amenity-card">
+        <div class="amenity-icon">🏃</div>
+        <h4>Jogging Track</h4>
+        <p>A safe, well-marked jogging track surrounded by greenery for daily walks and morning runs.</p>
+      </div>
+      <div class="amenity-card">
+        <div class="amenity-icon">🎠</div>
+        <h4>Kids Play Area</h4>
+        <p>A child-friendly play area with slides and swings, ideal for families with young children.</p>
+      </div>
+      <div class="amenity-card">
+        <div class="amenity-icon">🌳</div>
+        <h4>Central Garden</h4>
+        <p>A well-maintained central garden perfect for morning walks, fresh air, and family time.</p>
+      </div>
+      <div class="amenity-card">
+        <div class="amenity-icon">🏗️</div>
+        <h4>Modern Infrastructure</h4>
+        <p>Wide roads, drainage, sewer lines, street lights, and water connections for immediate development.</p>
+      </div>
+      <div class="amenity-card">
+        <div class="amenity-icon">🔒</div>
+        <h4>Security Gate</h4>
+        <p>24/7 gated security with guards and monitoring ensuring authorized entry and peace of mind.</p>
+      </div>
+      <div class="amenity-card">
+        <div class="amenity-icon">🛣️</div>
+        <h4>Wide Internal Roads</h4>
+        <p>Wide internal roads ensuring smooth traffic flow and easy access to every plot in the township.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section id="price">
+  <div class="container">
+    <span class="section-label">Pricing</span>
+    <h2 class="section-title">Price List of Skymarx Kharkhoda</h2>
+    <div class="price-content">
+      <p class="price-desc">Skymarx Kharkhoda is inviting interested buyers to share their preferences for the upcoming launch. Register your interest to get updates on plot availability, pricing, and launch announcements. Once the project receives RERA approval, all registered users will be notified.</p>
+      <div class="price-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Plot Sizes</th>
+              <th>Price / sq. yd</th>
+              <th>Total Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>100 to 179 sq. yd</td>
+              <td>On Request</td>
+              <td>On Request</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="color:#9ca3af;font-size:0.85rem;margin-bottom:2rem;">Prices, offers, and payment options are available on request. Contact our sales team to get the latest price details and the booking process.</p>
+      <a href="#" class="btn-primary" onclick="openPopup(event)">Request Pricing</a>
+    </div>
+  </div>
+</section>
+
+<!-- GROWTH SECTION -->
+<section class="growth-section">
+  <div class="container">
+    <div class="growth-grid">
+      <div>
+        <span class="section-label">Future Growth</span>
+        <h2 class="section-title">Upcoming Growth Around Skymarx Kharkhoda</h2>
+        <p class="section-desc">The area is growing fast due to new roads, industries, and planned infrastructure. Property values are expected to rise significantly.</p>
+        <div class="growth-points">
+          <div class="growth-point">
+            <div class="g-num">1</div>
+            <div>
+              <h4>Industrial Expansion Driving Growth</h4>
+              <p>New factories and industrial units like Maruti Suzuki and UNO Minda are boosting job creation. This is bringing more people to the area, increasing the need for housing and services.</p>
+            </div>
+          </div>
+          <div class="growth-point">
+            <div class="g-num">2</div>
+            <div>
+              <h4>Better Roads and City Planning</h4>
+              <p>The region is getting better roads, wider highways, and planned zones. This makes Skymarx Kharkhoda easy to reach and a smart choice for buyers looking at future-ready locations.</p>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="btn-primary" style="margin-top:2rem;display:inline-block;" onclick="openPopup(event)">Get More Details</a>
+      </div>
+      <div class="investment-img" style="background:linear-gradient(135deg,#f8f5f0,#e8dfd0);">
+        <span style="font-size:5rem;">📊</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="container">
+    <span class="section-label">Location Benefits</span>
+    <h2 class="section-title">Skymarx Project Location Benefits</h2>
+    <div class="location-grid">
+      <div class="location-text">
+        <p>Kharkhoda is growing fast because many big companies are setting up factories nearby. The Maruti Suzuki plant, UNO Minda, and the Suzuki Motorcycle unit are all close to the Skymarx residential project.</p>
+        <p>As more workers and professionals come here, the demand for housing is rising. That's why property prices in this area are already going up. With easy access to the KMP Expressway and new development all around, Kharkhoda is turning into the next big zone of NCR.</p>
+        <h4 style="color:var(--text-dark);margin-top:1.5rem;margin-bottom:0.8rem;font-size:1.1rem;">Connectivity</h4>
+        <ul class="connectivity-list">
+          <li>Near to KMP Expressway</li>
+          <li>Maruti Suzuki Plant: Right Opposite</li>
+          <li>UNO Minda: 3.5 km</li>
+          <li>IMT Kharkhoda: Just Next Door</li>
+          <li>Delhi Border: Easy Access via NH-352</li>
+        </ul>
+        <a href="#" class="btn-primary" style="margin-top:1.5rem;display:inline-block;" onclick="openPopup(event)">Contact Now</a>
+      </div>
+      <div class="map-placeholder">
+        📍
+        <p>Kharkhoda, Sonipat</p>
+        <p style="font-size:0.8rem;">Haryana — 131402</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQs -->
+<section id="FAQs">
+  <div class="container">
+    <span class="section-label">FAQ</span>
+    <h2 class="section-title">FAQs about Skymarx Kharkhoda</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q1. Where is Skymarx Kharkhoda located? <span class="faq-arrow">▼</span></div>
+        <div class="faq-answer">Skymarx Kharkhoda is in Sector 6 & 7 of Kharkhoda, Haryana. It's located right opposite the 800-acre Maruti Suzuki factory and very close to the KMP Expressway. Easy to reach from Delhi, Gurugram, and Sonipat by road.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q2. Is Skymarx Kharkhoda a good investment? <span class="faq-arrow">▼</span></div>
+        <div class="faq-answer">Yes, it's a great investment option. It's close to large factories like Maruti Suzuki, UNO Minda, and others, which means rising job opportunities and growing demand for housing. Phase 1 selling out quickly shows strong confidence in the project.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q3. What's the construction status of the Skymarx project? <span class="faq-arrow">▼</span></div>
+        <div class="faq-answer">Phase 1 received strong interest and initial development was completed. Phase 2 is currently under planning covering a larger area. Preliminary groundwork like road layout and site preparation has begun. The project is currently awaiting RERA registration.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q4. What do buyers say about the Skymarx Kharkhoda project? <span class="faq-arrow">▼</span></div>
+        <div class="faq-answer">Buyers who showed early interest in Phase 1 appreciated the pace of development and township layout. The response came from a mix of local families, investors, and professionals. Their positive feedback has contributed to growing interest in the next phase.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q5. Are there any updates I should know? <span class="faq-arrow">▼</span></div>
+        <div class="faq-answer">Yes! The Phase 2 launch is now live and open for soft interest. Limited plot options may be available once the new phase is registered. For updates on approvals, payment plans, or site visits, reach out to the sales team directly.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q6. When will possession be given? <span class="faq-arrow">▼</span></div>
+        <div class="faq-answer">The possession timeline will depend on project registration and development progress. This may vary depending on development progress and government approvals, but current work is on track.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q7. What is the PIN code of the location? <span class="faq-arrow">▼</span></div>
+        <div class="faq-answer">The pin code for Skymarx Kharkhoda is 131402. This falls under the Sonipat district in Haryana. The area is connected to nearby cities like Bahadurgarh, Rohtak, and Delhi through main highways.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q8. What are the available plot sizes? <span class="faq-arrow">▼</span></div>
+        <div class="faq-answer">Plot sizes at Skymarx Kharkhoda range from 100 to 179 square yards. This gives buyers flexibility based on their budget and future home plans. The sales team can help you check which sizes are available in the layout.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q9. Are there any maintenance charges? <span class="faq-arrow">▼</span></div>
+        <div class="faq-answer">As of now, the maintenance charges have not been announced. Future charges may apply for services like street lighting, security, and park upkeep. These details will be shared once the development nears completion.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q10. What is the total area of the Skymarx project? <span class="faq-arrow">▼</span></div>
+        <div class="faq-answer">The total Skymarx township area is 100+ acres, with 18 acres currently being developed under Phase 2. This includes roads, plots, green spaces, and commercial areas planned for future expansion.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Q11. Is resale available for Phase 1 plots? <span class="faq-arrow">▼</span></div>
+        <div class="faq-answer">Yes, resale may be available for some plots in Phase 1. Interested buyers can check with the sales team or verified property agents. Availability depends on current owners and market demand. Resale prices may differ from original rates.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="container">
+    <span class="section-label">Get In Touch</span>
+    <h2 class="section-title">Book a Site Visit or Get a Callback Today</h2>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-desc">If you're interested in booking a plot at Skymarx Kharkhoda, now is the perfect time. Fill in your details below to schedule a quick call or site visit. Our team will connect with you and share layout options and updates once project legal approvals are completed.</p>
+        <div style="margin-top:2rem;">
+          <h4 style="color:var(--white);margin-bottom:1rem;font-size:1rem;">Contact Us</h4>
+          <p style="color:#9ca3af;font-size:0.9rem;display:flex;align-items:center;gap:0.5rem;">📍 Sector 6 & 7, Kharkhoda, Sonipat District, Haryana</p>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:'Playfair Display',serif;color:var(--gold);margin-bottom:1.5rem;font-size:1.3rem;">Enquire Now</h3>
+        <div class="form-group">
+          <input type="text" placeholder="Name" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:var(--white);width:100%;padding:12px 16px;border-radius:6px;font-family:'Raleway',sans-serif;font-size:0.9rem;outline:none;">
+        </div>
+        <div class="form-group">
+          <input type="tel" placeholder="Phone Number" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:var(--white);width:100%;padding:12px 16px;border-radius:6px;font-family:'Raleway',sans-serif;font-size:0.9rem;outline:none;">
+        </div>
+        <div class="form-group">
+          <textarea placeholder="Message" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:var(--white);width:100%;padding:12px 16px;border-radius:6px;font-family:'Raleway',sans-serif;font-size:0.9rem;outline:none;resize:vertical;min-height:80px;"></textarea>
+        </div>
+        <button class="btn-primary" style="width:100%;" onclick="handleSubmit(this)">Submit Now</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Skymarx Kharkhoda</div>
+      <p class="footer-desc">Premium residential plots in Sector 6 & 7, Kharkhoda, Haryana. Located in the fastest growing industrial zone of NCR, near Maruti Suzuki Plant and KMP Expressway.</p>
+      <div class="footer-contact">
+        <p>📍 Sector 6 & 7, Kharkhoda, Sonipat, Haryana</p>
+      </div>
+      <div class="disclaimer">
+        <strong>Disclaimer:</strong> This website is run by a channel partner and is not the official website of the Skymarx Kharkhoda developer. All information provided here is for general awareness and marketing purposes only. Visitors are advised to independently verify details such as pricing, approvals, and availability before making any property decision.
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#highlights">Highlights</a></li>
+        <li><a href="#amenities">Amenities</a></li>
+        <li><a href="#price">Price</a></li>
+        <li><a href="#location">Location</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Get Full Details</h4>
+      <p style="font-size:0.85rem;margin-bottom:1rem;">Fill in your details to receive project updates, brochure, and booking assistance.</p>
+      <input type="text" placeholder="Name" style="width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:var(--white);padding:10px 14px;border-radius:6px;font-family:'Raleway',sans-serif;font-size:0.85rem;outline:none;margin-bottom:0.6rem;">
+      <input type="tel" placeholder="Phone Number" style="width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:var(--white);padding:10px 14px;border-radius:6px;font-family:'Raleway',sans-serif;font-size:0.85rem;outline:none;margin-bottom:0.6rem;">
+      <input type="email" placeholder="Email" style="width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:var(--white);padding:10px 14px;border-radius:6px;font-family:'Raleway',sans-serif;font-size:0.85rem;outline:none;margin-bottom:0.8rem;">
+      <button class="btn-primary" style="width:100%;font-size:0.85rem;padding:10px;" onclick="handleSubmit(this)">Send Now</button>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Skymarx Kharkhoda. All Rights Reserved. Channel Partner Website.</p>
+  </div>
+</footer>
+
+<!-- POPUP -->
+<div class="popup-overlay" id="popup" onclick="handleOverlayClick(event)">
+  <div class="popup-box">
+    <div class="popup-header">
+      <button class="popup-close" onclick="closePopup()" title="Close (ESC)">✕</button>
+      <h2 class="popup-title">Get Full Details</h2>
+      <p class="popup-sub">on Skymarx Kharkhoda</p>
+    </div>
+    <div class="popup-body">
+      <p style="color:#6b7280;font-size:0.88rem;margin-bottom:1.5rem;">Fill in your details to receive project updates, brochure, and booking assistance for Skymarx Kharkhoda.</p>
+      <div class="form-group">
+        <input type="text" placeholder="Name" id="popupName">
+      </div>
+      <div class="form-group">
+        <input type="tel" placeholder="Phone Number" id="popupPhone">
+      </div>
+      <div class="form-group">
+        <textarea placeholder="Message" id="popupMsg" style="min-height:70px;resize:vertical;"></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%;" onclick="handlePopupSubmit()">Submit Now</button>
+      <p class="popup-esc">Press <kbd style="background:#f3f4f6;border:1px solid #e5e7eb;border-radius:4px;padding:1px 6px;font-size:0.78rem;">ESC</kbd> to close</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // POPUP
+  function openPopup(e) {
+    if (e) e.preventDefault();
+    document.getElementById('popup').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePopup() {
+    document.getElementById('popup').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('popup')) closePopup();
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closePopup();
+  });
+
+  // Auto-open popup after 4 seconds
+  setTimeout(() => { openPopup(); }, 4000);
+
+  // FAQ TOGGLE
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // MOBILE MENU
+  function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    nav.classList.toggle('open');
+  }
+
+  // FORM SUBMIT
+  function handleSubmit(btn) {
+    const original = btn.textContent;
+    btn.textContent = '✓ Submitted!';
+    btn.style.background = '#22c55e';
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.style.background = '';
+    }, 2500);
+  }
+
+  function handlePopupSubmit() {
+    const name = document.getElementById('popupName').value.trim();
+    const phone = document.getElementById('popupPhone').value.trim();
+    if (!name || !phone) {
+      alert('Please fill in your name and phone number.');
+      return;
+    }
+    const btn = document.querySelector('.popup-body .btn-primary');
+    btn.textContent = '✓ Thank You! We will contact you soon.';
+    btn.style.background = '#22c55e';
+    setTimeout(() => {
+      closePopup();
+      btn.textContent = 'Submit Now';
+      btn.style.background = '';
+      document.getElementById('popupName').value = '';
+      document.getElementById('popupPhone').value = '';
+      document.getElementById('popupMsg').value = '';
+    }, 2500);
+  }
+
+  // Smooth nav scroll + highlight
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === '#') return;
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('navLinks').classList.remove('open');
+      }
+    });
+  });
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) {
+      nav.style.background = 'rgba(13,17,23,0.99)';
+      nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.3)';
+    } else {
+      nav.style.background = 'rgba(13,17,23,0.97)';
+      nav.style.boxShadow = 'none';
+    }
+  });
+</script>
+</body>
+</html>
